@@ -25,14 +25,21 @@ const cityInput = document.querySelector(".city-input"),
 
 
 const getDivData = (weatherItem, cityName, index) => {//peek img
-    temp = (weatherItem.main.temp - 273.15).toFixed(1)//forgot
+    const temp = (weatherItem.main.temp - 273.15).toFixed(1) //forgot
     if(index === 0){
         return `<h2>Current Weather</h2>
                 <div class="details">
                     <h2>${cityName}(${weatherItem.dt_txt.split(" ")[0]})</h2>
-                    <h6>Temperature: ${temp}℃</h6>
+                    <p>
+                    Temperature: <span id="tempValue">${temp}°C</span>
+                    <select id="toggleUnit">
+                        <option value="C" selected>°C</option>
+                        <option value="F">°F</option>
+                    </select>
+                </p>
                     <h6>Wind: ${weatherItem.wind.speed}M/S</h6>
                     <h6>Humidity: ${weatherItem.main.humidity}%</h6>
+                     <p id="lastUpdated"></p>
                 </div>
                 <div class = "icon">
                     <img src = "https://openweathermap.org/img/wn/10d@4x.png" alt="weather-icon">
@@ -74,6 +81,7 @@ const getWeatherData = (cityName, lat, lon) => {
                 const html = getDivData(weatherItem,cityName,index);
                 if(index === 0){
                     currentDiv.insertAdjacentHTML("beforeend",html)//d
+                    displayWeather(weatherItem);
                 } else {
                     weatherDiv.insertAdjacentHTML("beforeend",html)
                 }
@@ -120,5 +128,33 @@ const getUserLocation = () => {
         }
     )
 } 
+
+let isCelsius = true;
+let temperatureCelsius;
+
+function displayWeather(data){
+    const tempC = (data.main.temp - 273.15).toFixed(1);
+    temperatureCelsius = parseFloat(tempC);
+    const tempDisplay = document.getElementById('tempValue'),
+        toggleSlct = document.getElementById('toggleUnit'),
+        lastUpdated = document.getElementById('lastUpdated');
+
+    tempDisplay.textContent = `${tempC}°C`;
+
+    const now = new Date();
+    lastUpdated.textContent = `Last Updated: ${now.toLocaleTimeString()}`;
+
+    toggleSlct.onclick = () => {
+        const selectedUnit = toggleSlct.value;
+        if(selectedUnit === "C"){
+            tempDisplay.textContent = `${temperatureCelsius}°C`;
+        } else if(selectedUnit=== "F"){
+            const tempF = (temperatureCelsius * 9/5) + 32;//d
+            tempDisplay.textContent = `${tempF.toFixed(1)}°F`;
+        }
+    };
+
+}
+
 searchBtn.addEventListener("click",getCoord);
 locationBtn.addEventListener("click",getUserLocation);

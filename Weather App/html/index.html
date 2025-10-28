@@ -23,9 +23,16 @@
                 <h2>Current Weather</h2>
                 <div class="details">
                     <h2>________ (________)</h2>
-                    <h6>Temperature: __℃</h6>
+                    <p>
+                        Temperature: <span id="tempValue"></span>
+                        <select id="toggleUnit">
+                            <option value="C" selected>°C</option>
+                            <option value="F">°F</option>
+                        </select>
+                    </p>
                     <h6>Wind: __M/S</h6>
                     <h6>Humidity: __%</h6>
+                    <p id="lastUpdated"></p>
                 </div>
             </div>
 
