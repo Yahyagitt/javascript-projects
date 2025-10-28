@@ -1,8 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Chelsea+Market&display=swap');
 
 *{
-    padding: 0;
     margin: 0;
+    padding: 0;
     box-sizing: border-box;
 }
 
@@ -11,8 +11,8 @@ body{
     justify-content: center;
     height: 100vh;
     align-items: center;
-    background: url("../images/bg.svg");
     font-family: "Chelsea Market", system-ui;
+    background: url("../images/bg.svg");
 }
 
 .container{
