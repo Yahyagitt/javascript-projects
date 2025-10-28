@@ -114,6 +114,7 @@ h1{
     justify-content: space-between;
     align-items: center;
     box-shadow: 0 0 0 black;
+    gap: 20px;
 }
 
 .current-weather .details{

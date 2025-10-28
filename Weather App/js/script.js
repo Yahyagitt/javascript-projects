@@ -16,38 +16,38 @@
 
 
 
-const cityInput = document.querySelector(".city-input"),
-    searchBtn = document.querySelector(".search-btn"),
-    locationBtn = document.querySelector(".location-btn"),
-    currentDiv = document.querySelector(".current-weather"),
-    weatherDiv = document.querySelector(".cards"),
+const cityInput = document.querySelector('.city-input'),
+    searchBtn = document.querySelector('.search-btn'),
+    locationBtn = document.querySelector('.location-btn'),
+    currentDiv = document.querySelector('.current-weather'),
+    weatherCardsDiv = document.querySelector('.cards'),
     API_KEY = "20cb2e2663bf029faa7e6a00b001cdb5";
 
 
-const getDivData = (weatherItem, cityName, index) => {//peek img
-    const temp = (weatherItem.main.temp - 273.15).toFixed(1) //forgot
+const getDivData = (weatherItem, cityName, index) => {
+    const temp = (weatherItem.main.temp - 273.15).toFixed(1);
+
     if(index === 0){
         return `<h2>Current Weather</h2>
                 <div class="details">
-                    <h2>${cityName}(${weatherItem.dt_txt.split(" ")[0]})</h2>
+                    <h2>${cityName} (${weatherItem.dt_txt.split(" ")[0]})</h2>
                     <p>
-                    Temperature: <span id="tempValue">${temp}°C</span>
-                    <select id="toggleUnit">
-                        <option value="C" selected>°C</option>
-                        <option value="F">°F</option>
-                    </select>
-                </p>
+                        Temperature: <span id="tempValue">${temp}</span>
+                        <select id="toggleUnit">
+                            <option value="C" selected>°C</option>
+                            <option value="F">°F</option>
+                        </select>
+                    </p>
                     <h6>Wind: ${weatherItem.wind.speed}M/S</h6>
                     <h6>Humidity: ${weatherItem.main.humidity}%</h6>
-                     <p id="lastUpdated"></p>
+                    <p id="lastUpdated"></p>
                 </div>
                 <div class = "icon">
-                    <img src = "https://openweathermap.org/img/wn/10d@4x.png" alt="weather-icon">
-                    <h6>${weatherItem.weather[0].description}</h6>
-                </div>`
+                    <img src = "https://openweathermap.org/img/wn/${weatherItem.weather[0].icon}.png" alt = "weather icon">
+                    <h3>${weatherItem.weather[0].description}</h3>`
     } else {
         return `<li class="card">
-                        <h4>(${weatherItem.dt_txt.split(" ")[0]})</h4>
+                        <h4>${weatherItem.dt_txt.split(" ")[0]}</h4>
                         <h6>Temp: ${temp}℃</h6>
                         <h6>Wind: ${weatherItem.wind.speed}M/S</h6>
                         <h6>Humidity: ${weatherItem.main.humidity}%</h6>
@@ -61,100 +61,110 @@ const getWeatherData = (cityName, lat, lon) => {
     fetch(WEATHER_API)
         .then(res => res.json())
         .then(data => {
-            if(!data.list) return alert("An erro❌r has occured and data didnt arrive");//m
+            if(!data.list) return alert("An error has occured while fetching the data");
 
-            const uniquetemp = [];
-            const fiveDays = data.list.filter(obj => {//obj is current ele
-                const fiveDaysDates = new Date(obj.dt_txt).getDate();//m
-                if(!uniquetemp.includes(fiveDaysDates)){
-                    uniquetemp.push(fiveDaysDates);
+            const uniqueDates = [];
+            const fiveDays = data.list.filter(obj => {
+                const fiveDaysDates = new Date(obj.dt_txt).getDate();
+                if(!uniqueDates.includes(fiveDaysDates)){
+                    uniqueDates.push(fiveDaysDates);
                     return true;
                 }
                 return false;
-            });
+            })
 
-            currentDiv.innerHTML = "";//m used .innerhtml
-            weatherDiv.innerHTML = "";
+            currentDiv.innerHTML = "";
+            weatherCardsDiv.innerHTML = "";
             cityInput.value = "";
 
             fiveDays.forEach((weatherItem, index) => {
-                const html = getDivData(weatherItem,cityName,index);
+                const html = getDivData(weatherItem, cityName, index);
                 if(index === 0){
-                    currentDiv.insertAdjacentHTML("beforeend",html)//d
-                    displayWeather(weatherItem);
-                } else {
-                    weatherDiv.insertAdjacentHTML("beforeend",html)
+                    currentDiv.insertAdjacentHTML("beforeend",html);
+                    displayFeatures(weatherItem);
+                } else{
+                    weatherCardsDiv.insertAdjacentHTML("beforeend", html);
                 }
             });
-        })
+        }).catch(() => alert("Error fetching weather data"));
 }
 
-const getCoord = () => {
-    const cityName = cityInput.value.trim();//m
-    if(!cityName) return alert("Enter a city name!");
-    const WEATHER_API = `https://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=1&appid=${API_KEY}`//m https?
+const getCoords = () => {
+    const cityName = cityInput.value.trim();
+    if(!cityName) return alert("Enter a citys name!!");
 
-    fetch(WEATHER_API)
+    const COORD_API = `https://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=1&appid=${API_KEY}`;
+
+    fetch(COORD_API)
         .then(res => res.json())
         .then(data => {
-            if(!data.length) return alert("An error❌occured while gettin lat and lon");
+            if(!data.length) return alert("An error has occured while fetching data using city name");
 
-            const { name, lat, lon } = data[0];
+            const { name, lat, lon} = data[0];
             getWeatherData(name, lat, lon);
         }).catch(() => {
-            alert("An error❌ has occured while fetching the data")
-        })
+            return alert("An error has occured while fetching data using city name");
+        });
 }
 
-console.log(navigator);
 const getUserLocation = () => {
     navigator.geolocation.getCurrentPosition(
         position => {
             const { latitude, longitude } = position.coords;
-            const REVAPI = `https://api.openweathermap.org/geo/1.0/reverse?lat=${latitude}&lon=${longitude}&limit=1&appid=${API_KEY}`;
+            const REV_API = `https://api.openweathermap.org/geo/1.0/reverse?lat=${latitude}&lon=${longitude}&limit=1&appid=${API_KEY}`;
 
-            fetch(REVAPI)
+            fetch(REV_API)
                 .then(res => res.json())
                 .then(data => {
+                    if(!data.length) return alert("An error has occured while fetching rev geolocation");
+
                     const { name } = data[0];
                     getWeatherData(name, latitude, longitude);
-                }).catch(() => {
-                    alert("An error❌ has occured")
-                });
+                })
+                .catch(() => alert("Error fetching weather data"))
         }, (error) => {
-            if (error.code === error.PERMISSION_DENIED) {
-                alert("❌ Permission denied. Please enable location access.");
-            }
+            return alert("An error has occured location permission was not granted");
         }
-    )
-} 
-
-let isCelsius = true;
-let temperatureCelsius;
-
-function displayWeather(data){
-    const tempC = (data.main.temp - 273.15).toFixed(1);
-    temperatureCelsius = parseFloat(tempC);
-    const tempDisplay = document.getElementById('tempValue'),
-        toggleSlct = document.getElementById('toggleUnit'),
-        lastUpdated = document.getElementById('lastUpdated');
-
-    tempDisplay.textContent = `${tempC}°C`;
-
-    const now = new Date();
-    lastUpdated.textContent = `Last Updated: ${now.toLocaleTimeString()}`;
-
-    toggleSlct.onclick = () => {
-        const selectedUnit = toggleSlct.value;
-        if(selectedUnit === "C"){
-            tempDisplay.textContent = `${temperatureCelsius}°C`;
-        } else if(selectedUnit=== "F"){
-            const tempF = (temperatureCelsius * 9/5) + 32;//d
-            tempDisplay.textContent = `${tempF.toFixed(1)}°F`;
-        }
-    };
-
+    );
 }
 
-searchBtn.addEventListener("click",getCoord);
+
+let tempCalVar;
+
+function displayFeatures(weatherItem){
+    const tempC = (weatherItem.main.temp - 273.15).toFixed(1);
+    tempCalVar = parseFloat(tempC);
+
+    const tempValue = document.getElementById('tempValue'),
+        tempSlct = document.getElementById('toggleUnit'),
+        lastUpdated = document.getElementById('lastUpdated');
+
+    tempValue.textContent = `${tempC}°C`;
+    const now = new Date();
+    lastUpdated.textContent = `Last Updated ${now.toLocaleTimeString()}`
+
+    tempSlct.addEventListener("change",() =>{
+        const selectedUnit = tempSlct.value;
+        if(selectedUnit === "F"){
+            const tempF = (tempCalVar * 9 / 5) + 32;
+            tempValue.textContent = `${tempF.toFixed(1)}°F`
+        } else if(selectedUnit === "C"){
+            tempValue.textContent = `${tempCalVar.toFixed(1)}°C`
+        }
+    })
+}
+
+searchBtn.addEventListener("click", getCoords);
 locationBtn.addEventListener("click",getUserLocation);
+
+
+
+
+
+
+
+
+
+
+
+
