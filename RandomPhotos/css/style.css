@@ -7,10 +7,11 @@
 body{
     display: flex;
     flex-direction: column;
-    align-items: center;
-    height: 100vh;
-    width: 100vw;
+    margin: 10px;
     background: url("../images/bg.svg");
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
 }
 
 .container{
@@ -18,34 +19,37 @@ body{
 }
 
 .container img{
-    margin: 10px;
-    border-radius: 10px;
-    box-shadow: 0 7px 16px rgba(255, 255, 255, 0.7);
-    background-color: lightgray;
     width: 200px;
     height: 200px;
+    margin: 10px;
+    border-radius: 20px;
+    box-shadow: 0 7px 16px rgba(255, 255, 255, 0.7);
     transition: ease 0.2s;
+    cursor: pointer;
+    background-color: gray;
 }
 
 .container img:hover{
-    transform: scale(1.05);
-    cursor: pointer;
+    transform: scale(1.10);
     box-shadow: 0 7px 16px rgba(0, 0, 0, 0.7);
 }
 
 .btn{
-    border:none;
-    padding: 10px 20px;
-    margin: 20px;
-    color: white;
+    padding: 15px;
+    border-radius: 12px;
+    border: none;
     background-color: black;
-    border-radius: 20px;
-    box-shadow: 0 7px 16px rgba(0, 0, 0, 0.8);
-    transition: ease 0.2s;
+    color: white;
+    font-size: 15px;
+    box-shadow: 0 7px 16px rgba(0, 0, 0, 0.7);
     cursor: pointer;
+    transition: ease 0.2s;
 }
 
 .btn:hover{
-    transform: scale(1.04);
+    transform: scale(1.10);
     box-shadow: 0 7px 16px rgba(255, 255, 255, 0.7);
+    background-color: gray;
+    color: white;
 }
+
