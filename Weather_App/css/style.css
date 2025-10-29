@@ -1,0 +1,238 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif ;
+}
+
+body {
+    background: url('../images/bg.svg') no-repeat center center/cover;
+    min-height: 100vh;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+h1{
+    background-color: bisque;
+    color: black;
+    text-align: center;
+    font-size: 2.5rem;
+}
+
+.container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 35px;
+    padding: 0 50px;
+}
+
+.input-data{
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+}
+
+.input-data h2{
+    font-size: 1.5rem;
+}
+
+.input-data input{
+    height: 49px;
+    font-size: 1rem;
+    padding: 0 17px;
+    border-radius: 20px;
+    transition: ease;
+    outline: none;
+    border: none;
+    margin: 20px 0 40px 0;
+}
+
+.input-data input:focus{
+    padding: 0 5px;
+    border: 1px solid blue;
+    transform: scale(1.05);
+}
+
+
+.input-data button{
+    height: 49px;
+    margin: 20px 0;
+    border-radius: 20px;
+    transition: ease 0.2s;
+    outline: none;
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.input-data .search-btn:hover{
+    transform: scale(1.15);
+    background-color: black;
+    color: rgb(255, 255, 255);
+}
+
+.input-data .location-btn:hover{
+    transform: scale(1.15);
+    background-color: black;
+    color: rgb(255, 255, 255);
+}
+
+.input-data .seperator{
+    height: 1px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #000000;
+    margin: 20px 0;
+}
+
+.input-data .seperator::before{
+    content: "or";
+    color: gray;
+    padding: 0 15px;
+    margin-top: -4px;
+    font-size: 1.18rem;
+    background: bisque;
+}
+
+.weather-data{
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
+    width: 80%;
+    margin: 20px;
+}
+
+.current-weather{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 0 0 black;
+    gap: 20px;
+}
+
+.current-weather .details{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    background: url("../images/current.svg") no-repeat center/cover;
+    color: whitesmoke;
+    font-size: 1.25rem;
+    padding: 20px 20px;
+    border-radius: 15px;
+    transition: ease 0.2s;
+    box-shadow: 0px 6px 25px rgba(0, 0, 0, 0.25);
+}
+
+.current-weather .details:hover{
+    transform: scale(1.05);
+    background-color: gray;
+    box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.3),
+              0px 0px 12px rgba(255, 255, 255, 0.3);
+}
+
+.current-weather .icon{
+    display: flex;
+    flex-direction: column;
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+.current-weather .icon img{
+    max-width: 120px;
+    margin-top: -15px;
+}
+
+.current-weather .icon img:hover{
+    width: 120px;
+    transform: scale(1.25);
+    transition:  0.2s;
+}
+
+h3{
+    font-size: 1.5rem;
+}
+
+
+.cards{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
+    gap: 1.5rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    row-gap: 1rem;
+    column-gap: 10rem;
+}
+
+.card{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+    background: url("../images/days.svg") no-repeat center/cover;;
+    color: black;
+    border-radius: 15px;
+    padding: 10px 10px;
+    transition: ease 0.2s;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.15)
+}
+
+.card:hover{
+    transform: scale(1.05);
+    background-color: gray;
+    box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.3),
+              0px 0px 12px rgba(255, 255, 255, 0.3);
+}
+
+@media (max-width:900px){
+    .container{
+        flex-direction: column;
+        align-items: stretch;
+        padding: 20px;
+    }
+
+    .input-data, .weather-data{
+        width: 100%;
+    }
+    
+}
+
+@media (max-width: 600px){
+    h1{
+        font-size: 1.8rem;
+    }
+
+    .current-weather .icon img{
+        max-width: 80px;
+    }
+
+    .current-weather .details{
+        font-size: 1rem;
+        padding: 10px;
+    }
+}
+
+#toggleUnit{
+    background: rgb(121, 187, 241);
+    /* border: 1px solid rgb(0, 0, 0); */
+    padding: 5px;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-left: 8px;
+    color: wheat;
+}
+
+#lastUpdated{
+    font-size: 0.9rem;
+    color: #f2f2f2;
+    margin-top: 5px;
+}
