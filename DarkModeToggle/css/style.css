@@ -1,0 +1,72 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    align-items: center;
+    justify-content: center;
+    transition: ease;
+}
+
+.input {
+    opacity: 0;
+    z-index: 1;
+    cursor: pointer;
+}
+  
+
+.label{
+    position: absolute;
+    width: 80px;
+    height: 40px;
+    background-color: rgb(7, 252, 231);
+    border: 2px solid rgb(39, 8, 26); /*imp*/
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.4s ease, border 0.4s ease;
+}
+
+.circle{
+    width: 34px;
+    background-color: white;
+    height: 34px;
+    border-radius: 50%;
+    top: 1px;
+    position: absolute;
+    left: 1px;
+    border: 1px solid;
+    transition: background-color 0.4s ease;
+    animation: toggleOff .4s linear forwards;
+}
+
+.input:checked + .label{
+    background-color: black;
+    border: 2px solid  rgb(72, 14, 207);
+}
+
+.input:checked + .label .circle{
+    background-color: rgb(7, 252, 231);;
+    animation: toggleOn .4s linear forwards;
+}
+
+@keyframes toggleOn {
+    From{
+        transform: translateX(0);
+    }
+    To{
+        transform: translateX(40px);
+    }
+}
+@keyframes toggleOff {
+    From{
+        transform: translateX(40px);
+    }
+    To{
+        transform: translateX(0);
+    }
+}
