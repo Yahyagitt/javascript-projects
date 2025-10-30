@@ -60,7 +60,7 @@ Add, mark, and delete tasks. Demonstrates DOM CRUD operations and event delegati
 ---
 
 ## 🧠 Memory Card Game  
-**Live:** [Open Project](https://yahyagitt.github.io/javascript-projects/MemoryCardGame/html/index.html)  
+**Live:** [Open Project](https://yahyagitt.github.io/javascript-projects/MemorycardGame/html/index.html)  
 A fun and challenging memory game where you flip cards to find matching pairs. Demonstrates **DOM manipulation**, **event handling**, and **CSS 3D transformations** for a realistic card-flip effect.  
 
 **✨ Features:**  
