@@ -56,3 +56,16 @@ Switch between light and dark mode dynamically using CSS variables and local sta
 ## 📝 To-Do List  
 **Live:** [Open Project](https://yahyagitt.github.io/javascript-projects/To_Do_List_DOM/html/index.html)  
 Add, mark, and delete tasks. Demonstrates DOM CRUD operations and event delegation.
+
+
+🧠 Memory Card Game
+A stylish and fun Memory Card Flip Game built with HTML, CSS, and JavaScript!
+Test your focus, train your memory, and beat the clock by matching all pairs before you run out of lives.
+🎮 Live Demo: 🎮 (https://yahyagitt.github.io/javascript-projects/MemoryCard/html/index.html)
+(Make sure you deploy it using GitHub Pages — I’ll show you how below if you haven’t yet!)
+🪄 Features
+✅ 3D Flip Animation using CSS transforms
+✅ Randomized cards every round
+✅ Lives counter (you start with 8)
+✅ Win and lose restart system
+✅ Fully responsive layout
