@@ -58,14 +58,12 @@ Switch between light and dark mode dynamically using CSS variables and local sta
 Add, mark, and delete tasks. Demonstrates DOM CRUD operations and event delegation.
 
 
-🧠 Memory Card Game
-A stylish and fun Memory Card Flip Game built with HTML, CSS, and JavaScript!
-Test your focus, train your memory, and beat the clock by matching all pairs before you run out of lives.
-🎮 Live Demo: 🎮 (https://yahyagitt.github.io/javascript-projects/MemoryCard/html/index.html)
-(Make sure you deploy it using GitHub Pages — I’ll show you how below if you haven’t yet!)
-🪄 Features
-✅ 3D Flip Animation using CSS transforms
-✅ Randomized cards every round
-✅ Lives counter (you start with 8)
-✅ Win and lose restart system
-✅ Fully responsive layout
+##🧠 **Memory Card Game**
+**Live**:  [Open Project](https://yahyagitt.github.io/javascript-projects/MemorycardGame/html/index.html)  t
+A fun and challenging memory game where you flip cards to find matching pairs. Demonstrates DOM manipulation, event handling, and CSS 3D transformations for a realistic card-flip effect
+
+🪄 Features:
+3D flip animations
+Randomized card layout
+Lives counter & restart system
+Fully responsive design
