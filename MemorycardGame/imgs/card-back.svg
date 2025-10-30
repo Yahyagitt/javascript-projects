@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 280" width="200" height="280">
+  <defs>
+    <linearGradient id="grad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1b1b3a"/>
+      <stop offset="100%" stop-color="#2e6cf6"/>
+    </linearGradient>
+    <linearGradient id="borderGlow" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#00ffff" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#0077ff" stop-opacity="0.1"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Card body -->
+  <rect x="10" y="10" width="180" height="260" rx="20" fill="url(#grad)" stroke="url(#borderGlow)" stroke-width="3" />
+
+  <!-- Center pattern -->
+  <g opacity="0.3">
+    <circle cx="100" cy="140" r="70" stroke="#00ccff" stroke-width="2" fill="none" />
+    <circle cx="100" cy="140" r="40" stroke="#ffffff" stroke-width="1" fill="none" />
+    <line x1="30" y1="140" x2="170" y2="140" stroke="#00ffff" stroke-width="1" />
+    <line x1="100" y1="70" x2="100" y2="210" stroke="#00ffff" stroke-width="1" />
+  </g>
+
+  <!-- Animated glow -->
+  <circle cx="100" cy="140" r="90" fill="none" stroke="#00ffff" stroke-width="2">
+    <animate attributeName="opacity" values="0;0.6;0" dur="3s" repeatCount="indefinite" />
+  </circle>
+</svg>

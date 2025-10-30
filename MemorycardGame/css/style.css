@@ -1,0 +1,77 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    width: 100vw;
+    height: 100vh;
+    background: url("../imgs/bg.svg");
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-size: cover;
+    background-position: center;
+}
+
+h1{
+    margin-bottom: 2rem;
+}
+
+section{
+    display: grid;
+    grid-template-columns: repeat(4,minmax(80px, 7vw));
+    grid-auto-rows: minmax(80px, 7vw);
+    grid-gap: 1rem;
+    perspective: 800px;
+    box-shadow: 20px 20px 16px rgba(7, 252, 231, 0.7);
+    padding: 0.08rem;
+}
+
+.card{
+    position: relative;
+    transform-style: preserve-3d;
+    transition: all 1s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    box-shadow: 5px 10px 16px rgba(7, 252, 231, 0.7);
+    cursor: pointer;
+}
+
+.face,.back{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    pointer-events: none;
+}
+
+
+.back{
+    background: gray;
+    backface-visibility: hidden;
+}
+
+.toggleCard{
+    transform: rotateY(180deg);
+}
+
+.face{
+    transform: rotateY(-180deg);
+}
+
+
+
+
+@media (max-width: 768px) {
+    section {
+      grid-template-columns: repeat(4, minmax(60px, 7vw));
+      grid-auto-rows: minmax(60px, 7vw);
+    }
+  }
+  
+  @media (max-width: 480px) {
+    section {
+      grid-template-columns: repeat(4, minmax(60px, 2vw));
+      grid-auto-rows: minmax(60px, 2vw);
+    }
+  }
