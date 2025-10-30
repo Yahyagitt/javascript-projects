@@ -31,7 +31,7 @@ const Randomize = () => {
 };
 
 const checkCards = (e) => {
-  const clickedCard = e.target;
+  const clickedCard = e.currentTarget;
   clickedCard.classList.add('flipped');
   const flippedCards = document.querySelectorAll('.flipped');
   const toggleCards = document.querySelectorAll('.toggleCard');
@@ -53,15 +53,18 @@ const checkCards = (e) => {
       });
       playerLives--;
       playerLivesCount.textContent = `${playerLives}`
-      if(playerLives === 0){
-        Restart("Game Over!!");
-      }
+      setTimeout(() => {
+        if(playerLives === 0){
+          Restart("Game Over!!");
+        }
+      },1000);
     }
   }
-  if(toggleCards.length === 16){
-    Restart("You Won!!")
-  }
-
+  setTimeout(() => {
+    if(toggleCards.length === 16){
+      Restart("You win!!");
+    }
+  },1000);
 }
 
 
@@ -107,7 +110,7 @@ const Restart = (text) => {
   });
   playerLives = 8;
   playerLivesCount.textContent = playerLives;
-  setTimeout(() => {window.alert(text)},100);
+  setTimeout(() => {alert(text)},100);
 };
 
 CardGenerator();
