@@ -24,7 +24,7 @@ Fetches and displays random jokes using a public API. Demonstrates the use of `f
 ---
 
 ## 👤 Random User Generator  
-**Live:** [Open Project](https://yahyagitt.github.io/javascript-projects/randomUserGenerator/index.html)  
+**Live:** [Open Project](https://yahyagitt.github.io/javascript-projects/randomUserGenerator/html/index.html)  
 Displays random user details (photo, name, email, and country) using the `randomuser.me` API. Great for API and JSON practice.
 
 ---
